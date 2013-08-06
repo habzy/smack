@@ -707,6 +707,12 @@ public class PacketParserUtils {
 
         if (eventType == XmlPullParser.START_TAG) {
             streamError = new StreamError(parser.getName());
+            // The server is closing the active stream for this entity
+            // because a new stream has been initiated that conflicts with
+            // the existing stream.
+            if (streamError.getCode().equals("conflict")) {
+                break;
+            }
         }
         else if (eventType == XmlPullParser.END_TAG) {
             if (parser.getName().equals("error")) {
