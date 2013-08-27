@@ -66,7 +66,7 @@ class ServerPingTask implements Runnable {
             if (!res) {
                 Set<PingFailedListener> pingFailedListeners = pingManager.getPingFailedListeners();
                 for (PingFailedListener l : pingFailedListeners) {
-                    l.pingFailed();
+                    l.pingStopped();
                 }
             } else {
                 // Ping was successful, wind-up the periodic task again
